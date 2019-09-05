@@ -57,7 +57,7 @@ FoodStore.find_each do |store|
     f.save
   end
   
-  for i in 1..10 do
+  for i in 1..5 do
     store.food_galleries.create(
       image: open("http://lorempixel.com/#{rand(400..640)}/#{rand(400..640)}/food"),
       description: "food image #{i}"

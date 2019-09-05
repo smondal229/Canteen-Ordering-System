@@ -1,1 +1,0 @@
-ingredient has_one :cart_item, dependent: :nullify is not working
