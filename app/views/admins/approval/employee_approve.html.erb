@@ -1,0 +1,32 @@
+<% @page_title = "All Pending Employee Access Request" %>
+
+<% if @pending.count!=0 %>
+  <table class = "table" >
+    <thead>
+      <tr>
+        <th>E-Mail</th>
+        <th>Comapny</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pending.each do |p| %>
+        <tr>
+          <td><%= p.try(:email) %></td>
+          <% if p.company.nil? %>
+            <td>Others</td>
+          <% else %>
+            <td><%= p.company.name %></td>
+          <% end %>
+          <td><%= link_to("Approve", approve_employee_path(p), method: :put, class: "btn btn-primary" ) %>
+          <td><%= link_to("Reject", reject_employee_path(p), method: :put, class: "btn btn-danger" ) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div>
+  <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+</div>

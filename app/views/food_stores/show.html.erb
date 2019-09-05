@@ -1,0 +1,15 @@
+<% @page_title = "#{ @food_store.name }" %>
+
+<% if current_chef && current_chef.food_store == @food_store %>
+  <%= link_to "Add New Food Image to gallery", new_food_store_food_gallery_path(current_chef.food_store), class: "btn btn-primary my-2" %>
+<% end %>
+
+<div>
+  <%= link_to("View Menu", foods_path(food_store: @food_store), class: "btn btn-warning my-2") %>
+</div>
+
+<section class = "Gellery">
+  <h2>Food Gallery</h2>
+  <%= render(partial: "food_galleries/gallery") %>
+</section>
+

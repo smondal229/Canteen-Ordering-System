@@ -1,0 +1,20 @@
+<%= form_for(@cart_item) do |f| %>
+  <%= render(partial: "shared/error_messages", locals: { target: @cart_item }) %>
+  
+  <h3><%= @cart_item.food.name %></h3>
+  <%= f.hidden_field :food_id %>
+
+  <div class = "form-group">
+    <%= f.label :quantity, "Quantity" %>
+    <%= f.number_field :quantity, class: "form-control" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :description, "Any Extra Preference" %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.submit "Add", class: "btn btn-primary" %>
+  </div>
+<% end %>

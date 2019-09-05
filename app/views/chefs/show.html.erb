@@ -1,0 +1,47 @@
+<% @page_title = "Profile Dashboard" %>
+
+<% if @chef.name.blank? || @chef.phone.blank? || @chef.food_store.blank? %>
+  <div>
+    <%= link_to("Complete Your Profile", edit_chef_path(@current_chef), class:"btn btn-primary m-5 w-25") %>
+  </div>
+<% end %>
+
+<div>
+  <div>
+    <strong>Name : </strong><span><%= @chef.name %></span>
+  </div>
+
+  <div>
+    <strong>E-mail : </strong><span><%= @chef.email %></span>
+  </div>
+
+  <div>
+    <strong>Phone : </strong><span><%= @chef.phone %></span>
+  </div>
+
+  <div>
+    <strong>Food Store : </strong>
+    <span><%= @chef.food_store.try(:name) %></span>
+  </div>
+</div>
+
+<div>
+  <strong>Approved : </strong>
+  <% if @chef.approved %>
+    <span>Approved</span>
+  <% elsif @chef.approved.nil? %>
+    <span>Pending</span>
+  <% else %>
+    <span>Rejected</span>
+  <% end %>
+</div>
+
+<% if @chef.approved %>
+  <div>
+    <%= link_to("View Your FoodStore's Menu", foods_path(food_store: current_chef.try(:food_store)), class: "btn btn-primary my-2") %>
+  </div>
+
+  <div>
+    <%= link_to("Add Image to Gallery", new_food_store_food_gallery_path(food_store_id: current_chef.food_store_id), class: "btn btn-primary my-2") %>
+  </div>
+<% end %>

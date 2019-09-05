@@ -1,0 +1,43 @@
+<li class = "nav-item">
+  <%= link_to "Home", root_path, class: "nav-link" %>
+</li>
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+    Notifications
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-notifications="<%="chef"+current_chef.id.to_s %>" >
+    <%= render(partial:"notifications/notification", 
+      collection: current_chef.notifications.order("created_at desc")) %>
+  </div>
+</li>
+
+<li class = "nav-item">
+  <%= link_to("Recieved Orders", recieved_carts_path, class: "nav-link") %>
+</li>
+
+<li class = "nav-item">
+  <%= link_to("Messages", chef_messages_path(current_chef), class: "nav-link") %>
+</li>
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+    Profile
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to(chef_path(@current_chef), class: "dropdown-item") do %>
+      <span>Dashboard</span>
+    <% end %>
+
+    <%= link_to(edit_chef_path(@current_chef), class: "dropdown-item") do %>
+      <span>Edit Profile</span>
+    <% end %>
+    
+    <div class="dropdown-divider"></div>
+    <%= link_to(logout_path, method: :delete, class: "dropdown-item") do %>
+      <span>Logout</span>
+    <% end %>
+  </div>
+</li>

@@ -1,0 +1,17 @@
+<% @page_title = "Add food image to gallery" %>
+
+<%= form_for([@food_store, @food_gallery]) do |f| %>
+  <%= render(partial: "shared/error_messages", locals: { target: @food_gallery }) %>
+  <div class = "form-inline">
+    <%= f.label(:image, "Add image") %>
+    <%= f.file_field(:image, class: "form-control")%>
+  </div>
+  <div class = "form-group">
+    <%= f.label(:description, "Add food description") %>
+    <%= f.text_area(:description, class: "form-control")%>
+  </div>
+
+  <div class = "form-group">
+    <%= f.submit "Submit", class: "m-2" %>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+<%= link_to("#", class: "dropdown-item") do %>
+  <span class= "d-block"><%= notification.content %></span>
+  <small class = "float-right text-info"><%= notification.created_at.to_formatted_s(:short) %></small>
+<% end %>
+<div class = "dropdown-divider"></div>

@@ -1,0 +1,41 @@
+(function() {
+  <% Employee.where(approved: true).each do |emp| %>
+    App['<%="Employee#{emp.id}"%>'] = App.cable.subscriptions.create(
+      { channel: "MessagesChannel", class: "Employee", id: "<%= emp.id %>" },
+      {
+        connected: function() {
+          console.log('connected');
+        },
+
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data['message']);
+          let message_div = <%= "\"[data-messages = 'Employee#{emp.id}']\"" %>;
+          console.log(message_div);
+          
+          $(message_div).prepend(data['message']);
+        }
+      });
+  <% end %>
+
+  <% Chef.where(approved: true).each  do |chef| %>
+    App['<%="Chef#{chef.id}"%>'] = App.cable.subscriptions.create(
+      { channel: "MessagesChannel", class: "Chef", id: "<%= chef.id %>" },
+      {
+        connected: function() {
+          console.log('connected');
+        },
+
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data['message']);
+          let message_div = <%= "\"[data-messages = 'Chef#{chef.id}']\"" %>;
+          console.log(message_div);
+
+          $(message_div).prepend(data['message']);
+        }
+      });
+  <% end %>
+}).call(this);

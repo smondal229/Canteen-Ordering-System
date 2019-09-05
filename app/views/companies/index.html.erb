@@ -1,0 +1,27 @@
+<% @page_title = "Companies in here"%>
+
+<%= link_to "Add New Company", new_company_path, class: "btn btn-primary" %>
+
+<% if @companies.count!=0 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @companies.each do |c| %>
+        <tr>
+          <td><%= c.name %></td>
+          <td><%= link_to "Edit", edit_company_path(c) %></td>
+          <td><%= link_to "Delete", company_path(c), method: :delete, data: {confirm: "Are you sure?"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div>
+  <%= link_to "Back to homepage", admins_root_path, class: "btn btn-primary" %>
+</div>

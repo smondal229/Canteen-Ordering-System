@@ -1,0 +1,21 @@
+<%= form_for([@user, @message], remote: true) do |f| %>
+  <%= render(partial: "shared/error_messages", locals: { target: @message }) %>
+
+  <%= f.hidden_field :sendable_id, value: @message.sendable_id %>
+  <%= f.hidden_field :sendable_type, value: @message.sendable_type %>
+  
+  <div class = "form-group">
+    <%= f.label :recipientable_id, "Select a #{@recipient_class}" %>
+    <%= f.collection_select(:recipientable_id, @recipients.where(approved: true), :id, :email, {}, class: "form-control") %>
+    <%= f.hidden_field(:recipientable_type, value: @recipient_class)%>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, placeholder: "enter your message", class: "form-control" %>
+  </div>
+
+  <div class = "form-group" >
+    <%= f.submit("Send Message", class: "btn btn-primary") %>
+  </div>
+<% end %>

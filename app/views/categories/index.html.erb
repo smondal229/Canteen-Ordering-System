@@ -1,0 +1,31 @@
+<% @page_title = "All Categories" %>
+
+<% if current_admin %>
+  <%= link_to "Add New Category", new_category_path, class: "btn btn-primary" %>
+<% end %>
+
+<div class = "row my-5">
+  <% @categories.each do |cat| %>
+    <div class = "col-md-3 col-sm-12">
+      <div class = "card m-2 p-2">
+        <div class = "card-title">
+          <h3><%= cat.name %></h3>
+        </div>
+        <div class = "card-body">
+          <%= link_to "Browse this category", category_path(cat), class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= will_paginate(@categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, 
+  list_classes: %w(pagination justify-content-center)) %>
+  
+<div>
+  <% if current_admin %>
+    <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Back to homepage", root_path,class: "btn btn-primary" %>
+  <% end %>
+</div>

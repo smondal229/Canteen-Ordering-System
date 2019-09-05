@@ -1,0 +1,19 @@
+<% @page_title = "Edit Order" %>
+
+<%= form_for(@cart, html: { class: "form-inline m-3" }, remote: true) do |f| %>
+  <div>
+    <% if current_admin %>
+      <%= f.select(:priority, options_for_select(["Low", "High"], select: @cart.status),
+      {prompt: "Select a priority"}, class: "form-control" ) %>
+    <% end %>
+
+    <% if current_chef %>
+      <%= f.collection_select(:status_id, Status.all, :id, :name,
+       { prompt: "Select a Status" }, {class: "form-control", selected: @cart.status} ) %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit("Update order", class: "btn btn-primary mx-5") %>
+  </div>
+<% end %>

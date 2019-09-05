@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart_item: one
+  total_price: 1
+
+two:
+  cart_item: two
+  total_price: 1

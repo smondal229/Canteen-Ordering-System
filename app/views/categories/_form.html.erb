@@ -1,0 +1,12 @@
+<%=  form_for(@category) do |f|%>
+  <%= render(partial: "shared/error_messages", locals: { target: @category }) %>
+  
+  <div class = "form-group form-inline">
+    <%= f.label :name,"Category Name", class: "mr-2" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter category name" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.submit "Submit", class: "btn btn-primary"  %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<%= form_tag(foods_path, method: "get", class: "form-inline") do |f| %>
+  <div class = "form-group m-2">
+    <%= select_tag(:food_store,  options_from_collection_for_select(FoodStore.all, :id, :name, selected: params[:food_store]),
+       class: "form-control w-100", prompt: "Select a Food Store" )%>
+  </div>
+  <div class = "form-group m-2">
+    <%= select_tag(:category,  options_from_collection_for_select(Category.all, :id, :name, selected: params[:category]),
+     class: "form-control w-100", prompt: "Select a Category" )%>
+  </div>
+
+  <div class = "form-group m-2">
+    <%= submit_tag("Search Foods", class: "btn btn-primary")%>
+  </div>
+<% end %>
+
+<div class = "row my-5">
+  <% @foods.each do |food| %>
+    <div class = "col-md-3 col-sm-12">
+      <div class = "card p-2 m-2">
+        <div class = "card-title">
+          <h3><%= food.name %></h3>
+        </div>
+        <div class = "card-body">
+          <span class = "d-block">
+            <strong>Price : </strong>
+            <%= food.price %>
+          </span>
+          <span class = "d-block">At 
+            <%= link_to(food.food_store.name, food_store_path(food.food_store_id)) %>
+          </span>
+          <% if current_chef && current_chef.approved %>
+            <%= link_to("View Food", food_path(food), class: "btn btn-primary m-1") %>
+            <%= link_to("Edit Food", edit_food_path(food), class: "btn btn-primary m-1") %>
+            <%= link_to("Delete Food", food_path(food), method: :delete, confirm: "Are you sure", class: "btn btn-primary m-1") %>
+          <% elsif current_employee %>
+            <%= link_to("Order Food", new_cart_item_path(food: food), class: "btn btn-warning m-1") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= will_paginate(@categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, 
+  list_classes: %w(pagination justify-content-center)) %>

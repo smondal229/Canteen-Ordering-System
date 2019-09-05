@@ -1,0 +1,44 @@
+(function() {
+  <% Employee.all.each do |emp|%>
+    App['<%="notify-employee#{emp.id}"%>'] = App.cable.subscriptions.create(
+      {channel: "NotificationsChannel", class: "Employee", id: <%= emp.id %> },
+      {
+        connected: function() {
+        console.log("connected");
+        },
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data["notification"]);
+          let a = "[data-notifications='employee"+"<%=emp.id%>"+"']";
+          
+          if($(a).is(':hidden')) {
+            $(a).siblings('.dropdown-toggle').dropdown('toggle');
+          }
+
+          $(a).prepend(data["notification"]);
+        }
+      });
+  <% end %>
+  <% Chef.all.each  do |chef|%>
+    App['notify-<%="chef#{chef.id}"%>'] = App.cable.subscriptions.create(
+      {channel: "NotificationsChannel", class: "Chef", id: <%= chef.id %> },
+      {
+        connected: function() {
+        console.log("connected");
+        },
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data["notification"]);
+          let b = "[data-notifications='chef"+"<%=chef.id%>"+"']";
+
+          if($(b).is(':hidden')){
+            $(b).siblings('.dropdown-toggle').dropdown('toggle');
+          }
+          
+          $(b).prepend(data["notification"]);
+        }
+      });
+  <% end %>
+}).call(this);

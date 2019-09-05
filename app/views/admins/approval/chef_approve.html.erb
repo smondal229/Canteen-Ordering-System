@@ -1,0 +1,28 @@
+<% @page_title = "All Pending Chef Access Request" %>
+
+<% if @pending.count!=0 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>E-Mail</th>
+        <th>Food Store</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pending.each do |p| %>
+        <tr>
+          <td><%= p.try(:email) %></td>
+          <td><%= p.food_store.name if !p.food_store.nil? %></td>
+          <td><%= link_to("Approve", approve_chef_path(p), method: :put, class: "btn btn-primary" ) %>
+          <td><%= link_to("Reject", reject_chef_path(p), method: :put, confirm: "Are you sure to reject ?", class: "btn btn-danger" ) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div>
+  <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+</div>

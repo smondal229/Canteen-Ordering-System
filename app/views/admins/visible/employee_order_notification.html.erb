@@ -1,0 +1,48 @@
+<% @page_title = "Show/Hide Notifications for employees" %>
+
+<% if @employees.count!=0 %>
+  <table class = "table" >
+    <thead>
+      <tr>
+        <th>E-Mail</th>
+        <th>Comapny</th>
+        <th>Approved</th>
+        <th>Order Notification Visible</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @employees.each do |e| %>
+        <tr>
+          <td><%= e.try(:email) %></td>
+          <% if e.company.nil? %>
+            <td>Others</td>
+          <% else %>
+            <td><%= e.company.try(:name) %></td>
+          <% end %>
+          
+          <% if e.approved %>
+            <td>Approved</td>
+          <% else %>
+            <td>Not Approved</td>
+          <% end %>
+          <% if e.order_notification_visible %>
+            <td>Visible</td>
+          <td>
+            <%= link_to("Hide visibility", notification_visible_employee_path(e, visible: false),  method: :put, class:"btn btn-primary") %>
+          </td>
+          <% else %>
+            <td>Hidden</td>
+            <td>
+              <%= link_to("Show visibility", notification_visible_employee_path(e, visible: true), method: :put, class:"btn btn-primary") %>
+            </td>
+          <% end %>  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div>
+  <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+</div>

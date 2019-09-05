@@ -1,0 +1,25 @@
+<% @page_title = "Statuses" %>
+
+<table class = "table" >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @statuses.each do |status| %>
+      <tr>
+        <td><%= status.name %></td>
+        <td><%= link_to("Edit Status", edit_status_path(status), class: "btn btn-primary") %></td>
+        <td><%= link_to("Destroy Status", status_path(status), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class = "m-2">
+  <%= link_to("New Status", new_status_path, class: "btn btn-primary my-1") %>
+  <%= link_to("Back", admins_root_path, class: "btn btn-primary my-1")%>
+<div>

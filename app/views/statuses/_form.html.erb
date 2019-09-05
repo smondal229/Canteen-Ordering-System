@@ -1,0 +1,12 @@
+<%= form_for(@status, class: "form-inline") do |f| %>
+  <%= render(partial: "shared/error_messages", locals: { target: @status }) %>
+
+  <div class="form-group">
+    <%= f.label(:name, "Name") %>
+    <%= f.text_field(:name, class: "form-control", placeholder: "Enter status name") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit("Submit", class:"btn btn-primary") %>
+  </div>
+<% end %>

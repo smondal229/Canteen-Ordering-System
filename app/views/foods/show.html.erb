@@ -1,0 +1,16 @@
+<% @page_title = "View Food" %>
+  
+ <dl>
+  <dt> Name :</dt>
+  <dd><%= @food.name %></dd>
+  <dt>Price : </dt>
+  <dd><%= @food.price %></dd>
+  <dt>Catgory : </dt>
+  <dd><%= @food.category.name %></dd>
+</dl>
+
+<p>
+  <%= link_to("Edit Food", edit_food_path(@food), class: "btn btn-primary") %>
+  <%= link_to("Delete Food", food_path(@food), method: :delete, confirm: "Are you sure?", class: "btn btn-primary") %>
+  <%= link_to("Back to Menu", foods_path(food_store: @food.food_store), class: "btn btn-primary") %>
+</p>

@@ -1,0 +1,51 @@
+<% @page_title = "Show/Hide Notifications for chefs" %>
+
+<% if @chefs.count!=0 %>
+  <table class = "table" >
+    <thead>
+      <tr>
+        <th>E-Mail</th>
+        <th>Comapny</th>
+        <th>Approved</th>
+        <th>Order Notification Visible</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @chefs.each do |c| %>
+        <tr>
+          <td><%= c.try(:email) %></td>
+          <% if c.food_store.nil? %>
+            <td>NA</td>
+          <% else %>
+            <td><%= c.food_store.try(:name) %></td>
+          <% end %>
+          
+          <% if c.approved %>
+            <td>Approved</td>
+          <% else %>
+            <td>Not Approved</td>
+          <% end %>
+          
+          <% if c.order_notification_visible %>
+            <td>Visible</td>
+            <td>
+              <%= link_to("Hide visibility", notification_visible_chef_path(c, visible: false),  method: :put, class:"btn btn-primary") %>
+            </td>
+          <% else %>
+            <td>Hidden</td>
+            <td>
+              <%= link_to("Show visibility", notification_visible_chef_path(c, visible: true), method: :put, class:"btn btn-primary") %>
+            </td>
+          <% end %>
+        </tr>
+
+        <tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div>
+  <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+</div>

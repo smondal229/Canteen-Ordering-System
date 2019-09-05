@@ -1,0 +1,36 @@
+<% @page_title = "Profile Dashboard" %>
+
+<% if @employee.name.blank? || @employee.phone.blank? || @employee.company.blank? %>
+  <%= link_to("Complete Your Profile", edit_employee_path(@current_employee), class:"btn btn-primary m-5 w-25") %>
+<% end %>
+
+<div>
+  <div>
+    <strong>Name : </strong><span><%= @employee.try(:name) %></span>
+  </div>
+
+  <div>
+    <strong>E-mail : </strong><span><%= @employee.try(:email) %></span>
+  </div>
+
+  <div>
+    <strong>Phone : </strong><span><%= @employee.try(:phone) %></span>
+  </div>
+
+  <div>
+    <strong>Company : </strong>
+    
+    <% if !@employee.company.blank? %>
+      <span><%= @employee.company.try(:name) %></span>
+    <% end %>
+  </div>
+
+  <div>
+    <strong>Approved : </strong>
+    <% if @employee.approved %>
+      <span>Approved</span>
+    <% else %>
+      <span>Not Approved</span>
+    <% end %>
+  </div>
+</div>

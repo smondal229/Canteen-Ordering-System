@@ -1,0 +1,39 @@
+<% @page_title = "Home Page"%>
+
+<%= link_to(categories_path, class: "btn btn-warning my-5") do %>
+  <h3>View All Categories</h3>
+<% end %>
+
+<div class = "row">
+  <% @categories.each do |cat| %>
+    <div class = "col-md-3 col-sm-12">
+      <div class = "card p-2 my-2">
+        <div class = "card-title">
+          <h3><%= cat.name %></h3>
+        </div>
+        <div class = "card-body">
+          <%= link_to "Browse this category", category_path(cat), class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to(food_stores_path, class: "btn btn-warning my-5") do %>
+  <h3>View All Food Stores</h3>
+<% end %>
+
+<div class = "row">
+  <% @food_stores.each do |store| %>
+    <div class = "col-md-3 col-sm-12">
+      <div class = "card p-2 my-2">
+        <div class = "card-title">
+          <h3><%= store.name %></h3>
+        </div>
+        <div class = "card-body">
+          <%= link_to "Browse this Food Store",food_store_path(store), class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

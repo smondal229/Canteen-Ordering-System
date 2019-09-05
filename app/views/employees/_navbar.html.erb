@@ -1,0 +1,41 @@
+<li class = "nav-item">
+  <%= link_to "Home", root_path, class: "nav-link" %>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+    Notifications
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-notifications="<%="employee"+current_employee.id.to_s %>" >
+    <%= render(partial:"notifications/notification", 
+      collection: current_employee.notifications.order("created_at desc")) %>
+  </div>
+</li>
+<li class = "nav-item">
+  <%= link_to("Messages", employee_messages_path(current_employee), class: "nav-link") %>
+</li>
+<li class = "nav-item">
+  <%= link_to("Order Food", foods_path, class: "nav-link") %>
+</li>
+<li class = "nav-item">
+  <%= link_to("View Cart", cart_path(set_current_cart), class: "nav-link") %>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
+    Profile
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to(employee_path(@current_employee), class: "dropdown-item") do %>
+      <span>Dashboard</span>
+    <% end %>
+    <%= link_to(history_carts_path, class: "dropdown-item") do %>
+      <span>Orders History</span>
+    <% end %>
+    <%= link_to(edit_employee_path(@current_employee), class: "dropdown-item") do %>
+      <span>Edit Profile</span>
+    <% end %>
+    <div class="dropdown-divider"></div>
+    <%= link_to(logout_path, method: :delete, class: "dropdown-item") do %>
+      <span>Logout</span>
+    <% end %>
+  </div>
+</li>

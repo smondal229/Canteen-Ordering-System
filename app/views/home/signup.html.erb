@@ -1,0 +1,33 @@
+<%  @page_title = "Sign Up" %>
+
+<%= form_for(:user) do |f| %>
+  <ul class = "list-group">
+    <% @errors.try(:each) do |message| %>
+      <li class = "list-group-item"><%= message %></li>
+    <% end %>
+  </ul>
+
+  <div class = "form-group">
+    <%= f.label :email, "Email "%>
+    <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
+  </div>
+  
+  <div class = "form-group">
+    <%= f.label :password, "Password "%>
+    <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :password_confirmation, "Password Confirmation"%>
+    <%= f.password_field :password_confirmation, placeholder: "Enter your password again", class: "form-control" %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.collection_select(:type, { "Sign Up as Employee": "Employee", "Sign Up as Chef": "Chef" }, :last, :first) %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

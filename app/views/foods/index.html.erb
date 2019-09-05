@@ -1,0 +1,22 @@
+<% if @food_store.present? %>
+  <% @page_title = "#{@food_store.name} menu" %>
+  <% if current_chef && current_chef.approved && current_chef.food_store == @food_store %>
+    <%= link_to "Add New Food", new_food_path(food_store: @food_store), class: "btn btn-primary m-2" %>
+  <% end %>
+<% elsif @category.present? %>
+  <% @page_title = "#{@category.name} foods" %>
+<% elsif params[:category] && params[:food_store] %>
+  <% @page_title = "Search Results" %>
+<% else %>
+  <% @page_title = "All Foods" %>
+<% end %>
+
+<%= render(partial: "foods")%>
+
+<div class = "my-3">
+  <% if current_admin %>
+    <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Back to homepage", root_path,class: "btn btn-primary" %>
+  <% end %>
+</div>

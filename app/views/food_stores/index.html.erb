@@ -1,0 +1,43 @@
+<% @page_title = "Food Stores" %>
+
+<div class = "m-2">
+  <% if current_admin %>
+    <%= link_to "Add New Food Store", new_food_store_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<%= form_tag(food_stores_path, method: :get) do %>
+  <div class = "form-inline">
+    <%= collection_select(:food_store, :category, Category.all, :id, :name, { prompt: "Browse by category" }, class:"form-control") %>
+    <%= submit_tag "Search by Category", class: "btn btn-primary m-2" %>
+  </div>
+<% end %>
+
+<div>
+<% if @food_stores.count!=0 %>
+  <div class = "row my-5">
+    <% @food_stores.each do |store| %>
+      <div class = "col-md-3 col-sm-12">
+        <div class = "card p-2 m-2">
+          <div class = "card-title">
+            <h3><%= store.name %></h3>
+          </div>
+          <div class = "card-body">
+            <%= link_to "Browse this Food Stores", food_store_path(store), class: "btn btn-warning" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate(@categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, 
+    list_classes: %w(pagination justify-content-center)) %>
+<% end %>
+
+<div class = "my-5">
+  <% if current_admin %>
+    <%= link_to "Back to homepage", admins_root_path,class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Back to homepage", root_path,class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<% if @food_galleries.count!=0 %>
+  <div class = "row container">
+    <% @food_galleries.each do |image| %>
+      <div class = "col-md-3 col-sm-12 my-3" data-toggle = "modal" data-target = "#myModal">
+        <%= image_tag(image.image.url(:thumb), alt: "#{image.image_file_name}")%></h3>
+      </div>
+
+      <div class="modal fade" id="myModal">
+        <div class = "modal-dialog modal-dialog-centered">
+          <div class = "modal-content">
+            <div class = "modal-body">
+              <figure>
+                <%= image_tag(image.image.url(:medium), alt: "#{image.image_file_name}")%>
+              </figure>
+              <figcaption><%= "#{image.description}" %></figcaption>
+            </div>
+            <div class = "modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class = "text-danger">No photos uploaded yet</div>
+<% end %>
+
+<%= will_paginate(@food_galleries, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, 
+  list_classes: %w(pagination justify-content-center)) %>

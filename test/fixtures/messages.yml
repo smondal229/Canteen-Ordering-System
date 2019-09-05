@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sendable: one
+  sendable_type: Sendable
+  recipientable: one
+  recipientable_type: Recipientable
+  subject: MyString
+  body: MyText
+
+two:
+  sendable: two
+  sendable_type: Sendable
+  recipientable: two
+  recipientable_type: Recipientable
+  subject: MyString
+  body: MyText

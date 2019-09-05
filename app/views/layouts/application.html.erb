@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <%= link_to @page_title,"#", class: "navbar-brand" %>
+        <ul class="nav navbar-nav mr-auto">
+          <% if !(current_employee || current_admin || current_chef) %>
+            <li class = "nav-item">
+              <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
+            <li class = "nav-item">
+              <%= link_to "Signup", signup_path, class: "nav-link" %>
+            </li>          
+            <li class="nav-item">
+              <%= link_to "Login", login_path, class: "nav-link" %>
+            </li>
+          <% elsif current_admin %>
+            <%= render(partial: "admins/navbar") %>
+          <% elsif current_chef %>
+            <%= render(partial: "chefs/navbar") %>
+          <% elsif current_employee %>
+            <%= render(partial: "employees/navbar") %>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class = "container">
+      <% if !flash.empty? %>
+        <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "flash text-#{key}" %>
+        <% end %>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
