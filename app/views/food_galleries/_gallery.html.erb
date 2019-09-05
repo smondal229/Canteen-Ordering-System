@@ -1,21 +1,21 @@
 <% if @food_galleries.count!=0 %>
-  <div class = "row container">
+  <div class = "row container ">
     <% @food_galleries.each do |image| %>
-      <div class = "col-md-3 col-sm-12 my-3" data-toggle = "modal" data-target = "#myModal">
-        <%= image_tag(image.image.url(:thumb), alt: "#{image.image_file_name}")%></h3>
-      </div>
+      <div class = "col-md-3 col-sm-12 my-3" data-toggle = "modal" data-target = "#myModal<%= image.image_file_name %>">
+        <%= image_tag(image.image.url(:thumb), alt: "#{image.image_file_name}")%>
 
-      <div class="modal fade" id="myModal">
-        <div class = "modal-dialog modal-dialog-centered">
-          <div class = "modal-content">
-            <div class = "modal-body">
-              <figure>
-                <%= image_tag(image.image.url(:medium), alt: "#{image.image_file_name}")%>
-              </figure>
-              <figcaption><%= "#{image.description}" %></figcaption>
-            </div>
-            <div class = "modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal fade" id="myModal<%=image.image_file_name %>">
+          <div class = "modal-dialog modal-dialog-centered">
+            <div class = "modal-content">
+              <div class = "modal-body">
+                <figure>
+                  <%= image_tag(image.image.url(:medium), alt: "#{image.image_file_name}")%>
+                </figure>
+                <figcaption><%= "#{image.description}" %></figcaption>
+              </div>
+              <div class = "modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>

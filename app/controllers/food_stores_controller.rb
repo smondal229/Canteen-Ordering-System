@@ -33,7 +33,7 @@ class FoodStoresController < ApplicationController
   end
 
   def show
-    @food_galleries = FoodGallery.includes(:food_store).where(food_store_id: params[:id]).paginate(page: params[:page], per_page: 7)
+    @food_galleries = FoodGallery.includes(:food_store).where(food_store_id: params[:id]).paginate(page: params[:page])
   end
   
   def menu

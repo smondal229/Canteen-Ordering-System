@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include ChefsHelper
   include CartHelper
   
-  WillPaginate.per_page = 4
+  WillPaginate.per_page = 6
 
   protected
   
