@@ -30,7 +30,7 @@
           <% if c.order_notification_visible %>
             <td>Visible</td>
             <td>
-              <%= link_to("Hide visibility", notification_visible_chef_path(c, visible: false),  method: :put, class:"btn btn-primary") %>
+              <%= link_to("Hide visibility", notification_visible_chef_path(c, visible: false),  method: :put, data: { confirm: "Are you sure to hide ?" }, class:"btn btn-primary") %>
             </td>
           <% else %>
             <td>Hidden</td>

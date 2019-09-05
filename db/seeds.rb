@@ -50,18 +50,11 @@ for i in 6..10 do
   Chef.find(i).update(name: "name#{i}", food_store_id: rand(4..9))
 end
 
-FoodStore.find_each do |store|
+FoodStore.find_each do |store| 
   for i in 1..30 do
     f = store.foods.new(name: "Food#{i}", price: 10*rand(4..60))
     f.category = Category.find(rand(1..8))
     f.save
-  end
-  
-  for i in 1..5 do
-    store.food_galleries.create(
-      image: open("http://lorempixel.com/#{rand(400..640)}/#{rand(400..640)}/food"),
-      description: "food image #{i}"
-    )
   end
 end
 
@@ -69,4 +62,13 @@ Statuses = [ "Recieved", "Cooking", "Prepared", "Delivered" ]
 
 Statuses.each do |status|
   Status.create(name: status)
+end
+
+FoodStore.find_each do |store|
+  for i in 1..5 do
+    store.food_galleries.create(
+      image: open("http://lorempixel.com/#{rand(400..640)}/#{rand(400..640)}/food"),
+      description: "food image #{i}"
+    )
+  end
 end

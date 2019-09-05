@@ -2,5 +2,5 @@ class Status < ApplicationRecord
 
   has_many :carts
   
-  validates :name, null: false, uniqueness: { case_sensitive: false }
+  validates :name, null: false, presence: true, uniqueness: { case_sensitive: false }
 end

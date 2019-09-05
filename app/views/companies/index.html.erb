@@ -15,7 +15,7 @@
         <tr>
           <td><%= c.name %></td>
           <td><%= link_to "Edit", edit_company_path(c) %></td>
-          <td><%= link_to "Delete", company_path(c), method: :delete, data: {confirm: "Are you sure?"} %></td>
+          <td><%= link_to "Delete", company_path(c), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
     </tbody>

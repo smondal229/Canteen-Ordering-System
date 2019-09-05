@@ -6,7 +6,7 @@
   
   <div class = "form-group">
     <%= f.label :recipientable_id, "Select a #{@recipient_class}" %>
-    <%= f.collection_select(:recipientable_id, @recipients.where(approved: true), :id, :email, {}, class: "form-control") %>
+    <%= f.collection_select(:recipientable_id, @recipients, :id, :email, {}, class: "form-control") %>
     <%= f.hidden_field(:recipientable_type, value: @recipient_class)%>
   </div>
 

@@ -42,14 +42,11 @@ class MessagesController < ApplicationController
 
     def set_recipientable
       if @sendable_class == "Employee"
-
         @recipient_class = "Chef".classify.constantize
-        @recipients = @recipient_class.all
-
       elsif @sendable_class == "Chef"
-
         @recipient_class = "Employee".classify.constantize
-        @recipients = @recipient_class.where.not(id: current_chef)
       end
+
+      @recipients = @recipient_class.where(approved: true)
     end
 end

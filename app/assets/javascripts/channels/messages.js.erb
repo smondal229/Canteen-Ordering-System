@@ -11,10 +11,10 @@
 
         received: function(data) {
           console.log(data['message']);
-          let message_div = <%= "\"[data-messages = 'Employee#{emp.id}']\"" %>;
-          console.log(message_div);
+          let employee_div = <%= "\"[data-messages = 'Employee#{emp.id}']\"" %>;
+          console.log(employee_div);
           
-          $(message_div).prepend(data['message']);
+          $(employee_div).prepend(data['message']);
         }
       });
   <% end %>
@@ -31,10 +31,10 @@
 
         received: function(data) {
           console.log(data['message']);
-          let message_div = <%= "\"[data-messages = 'Chef#{chef.id}']\"" %>;
-          console.log(message_div);
+          let chef_div = <%= "\"[data-messages = 'Chef#{chef.id}']\"" %>;
+          console.log(chef_div);
 
-          $(message_div).prepend(data['message']);
+          $(chef_div).prepend(data['message']);
         }
       });
   <% end %>
