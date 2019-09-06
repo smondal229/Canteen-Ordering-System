@@ -5,6 +5,6 @@ class FoodStore < ApplicationRecord
   has_many :food_galleries
   has_many :carts
   
-  validates :name, presence: true, null: false
+  validates :name, presence: true, null: false, uniqueness: { case_sensitive: false }
 
 end

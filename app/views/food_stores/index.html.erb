@@ -6,13 +6,6 @@
   <% end %>
 </div>
 
-<%= form_tag(food_stores_path, method: :get) do %>
-  <div class = "form-inline">
-    <%= collection_select(:food_store, :category, Category.all, :id, :name, { prompt: "Browse by category" }, class:"form-control") %>
-    <%= submit_tag "Search by Category", class: "btn btn-primary m-2" %>
-  </div>
-<% end %>
-
 <div>
 <% if @food_stores.count!=0 %>
   <div class = "row my-5">

@@ -142,6 +142,6 @@ ActiveRecord::Schema.define(version: 2019_09_04_055927) do
   add_foreign_key "chefs", "food_stores"
   add_foreign_key "employees", "companies"
   add_foreign_key "food_galleries", "food_stores"
-  add_foreign_key "foods", "categories"
-  add_foreign_key "foods", "food_stores"
+  add_foreign_key "foods", "categories", on_delete: :cascade
+  add_foreign_key "foods", "food_stores", on_delete: :cascade
 end
