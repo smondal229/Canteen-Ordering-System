@@ -1,10 +1,10 @@
 <% if @food_galleries.count!=0 %>
   <div class = "row container ">
     <% @food_galleries.each do |image| %>
-      <div class = "col-md-3 col-sm-12 my-3" data-toggle = "modal" data-target = "#myModal<%= image.image_file_name %>">
+      <div class = "col-md-3 col-sm-12 my-3" data-toggle = "modal" data-target = "#<%= image.image_file_name.split(".").first %>">
         <%= image_tag(image.image.url(:thumb), alt: "#{image.image_file_name}")%>
 
-        <div class="modal fade" id="myModal<%=image.image_file_name %>">
+        <div class="modal fade" id="<%= image.image_file_name.split(".").first %>">
           <div class = "modal-dialog modal-dialog-centered">
             <div class = "modal-content">
               <div class = "modal-body">

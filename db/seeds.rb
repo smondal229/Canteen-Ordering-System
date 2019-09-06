@@ -65,9 +65,9 @@ Statuses.each do |status|
 end
 
 FoodStore.find_each do |store|
-  for i in 1..5 do
+  for i in 1..8 do
     store.food_galleries.create(
-      image: open("http://lorempixel.com/#{rand(400..640)}/#{rand(400..640)}/food"),
+      image: File.open(Rails.root.join("app/assets/images/image#{rand(1..14)}")),
       description: "food image #{i}"
     )
   end

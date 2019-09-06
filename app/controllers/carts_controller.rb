@@ -28,8 +28,6 @@ class CartsController < ApplicationController
         if current_chef.order_notification_visible
           Notification.create(notifiable: current_chef, content: "Order id #{@cart.id} is #{ @cart.status.name }")
         end
-
-        redirect_to(recieved_carts_path, flash: { success: "Order has been updated" })
       end
 
     else

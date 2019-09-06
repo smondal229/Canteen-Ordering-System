@@ -4,16 +4,20 @@
   <div>
     <% if current_admin %>
       <%= f.select(:priority, options_for_select(["Low", "High"], select: @cart.status),
-      {prompt: "Select a priority"}, class: "form-control" ) %>
+      { prompt: "Select a priority" }, class: "form-control" ) %>
     <% end %>
 
     <% if current_chef %>
       <%= f.collection_select(:status_id, Status.all, :id, :name,
-       { prompt: "Select a Status" }, {class: "form-control", selected: @cart.status} ) %>
+       { prompt: "Select a Status" }, { class: "form-control", selected: @cart.status } ) %>
     <% end %>
   </div>
 
   <div>
     <%= f.submit("Update order", class: "btn btn-primary mx-5") %>
   </div>
+<% end %>
+
+<% if current_chef %>
+  <%= link_to("Back to recieved order", recieved_carts_path, class: "btn btn-primary") %>
 <% end %>
