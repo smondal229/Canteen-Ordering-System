@@ -67,7 +67,7 @@ end
 FoodStore.find_each do |store|
   for i in 1..8 do
     store.food_galleries.create(
-      image: File.open(Rails.root.join("app/assets/images/image#{rand(1..14)}")),
+      image: File.open(Rails.root.join("app/assets/images/image#{rand(1..14)}.jpg")),
       description: "food image #{i}"
     )
   end
