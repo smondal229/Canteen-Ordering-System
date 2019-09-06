@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(version: 2019_09_04_055927) do
   create_table "food_galleries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "food_store_id"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.bigint "image_file_size"
@@ -136,12 +134,12 @@ ActiveRecord::Schema.define(version: 2019_09_04_055927) do
 
   add_foreign_key "cart_items", "carts", on_delete: :cascade
   add_foreign_key "cart_items", "foods", on_delete: :cascade
-  add_foreign_key "carts", "employees"
-  add_foreign_key "carts", "food_stores"
+  add_foreign_key "carts", "employees", on_delete: :cascade
+  add_foreign_key "carts", "food_stores", on_delete: :cascade
   add_foreign_key "carts", "statuses", on_delete: :cascade
   add_foreign_key "chefs", "food_stores"
   add_foreign_key "employees", "companies"
-  add_foreign_key "food_galleries", "food_stores"
+  add_foreign_key "food_galleries", "food_stores", on_delete: :cascade
   add_foreign_key "foods", "categories", on_delete: :cascade
   add_foreign_key "foods", "food_stores", on_delete: :cascade
 end

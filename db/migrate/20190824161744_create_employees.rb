@@ -9,7 +9,7 @@ class CreateEmployees < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :oauth_token
       t.datetime :oauth_expires_at
-      t.references :company, foreign_key: true
+      t.references :company, foreign_key: { on_delete: :cascade }
     end
 
     add_index :employees, :email, unique: true
