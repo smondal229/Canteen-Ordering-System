@@ -34,7 +34,7 @@ class CompaniesController < ApplicationController
 
   def destroy
     @company.destroy
-    redirect_to(companies_path, flash: { info: "#{@company} data deleted" })
+    redirect_to(companies_path, flash: { info: "#{@company.name} data deleted" })
   end
 
   private
