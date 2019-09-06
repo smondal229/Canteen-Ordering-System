@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
 
           find_path(user)
         else
-          redirect_back(fallback_location: root_path, flash: { danger: "Sign in by email and password!"} )  
+          redirect_back(fallback_location: root_path, flash: { danger: "Not Found! Sign up by email and password!"} )  
         end
       else
         redirect_back(fallback_location: root_path, flash: { danger: "Sign up first!"} )
