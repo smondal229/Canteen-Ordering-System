@@ -1,7 +1,7 @@
 (function() {
   <% Employee.where(approved: true).each do |emp| %>
-    App['<%="Employee#{emp.id}"%>'] = App.cable.subscriptions.create(
-      { channel: "MessagesChannel", class: "Employee", id: "<%= emp.id %>" },
+    App['msg-<%="employee#{emp.id}"%>'] = App.cable.subscriptions.create(
+      { channel: "MessagesChannel", class: "Employee", id: <%= emp.id %> },
       {
         connected: function() {
           console.log('connected');
@@ -20,8 +20,8 @@
   <% end %>
 
   <% Chef.where(approved: true).each  do |chef| %>
-    App['<%="Chef#{chef.id}"%>'] = App.cable.subscriptions.create(
-      { channel: "MessagesChannel", class: "Chef", id: "<%= chef.id %>" },
+    App['msg<%="chef#{chef.id}"%>'] = App.cable.subscriptions.create(
+      { channel: "MessagesChannel", class: "Chef", id: <%= chef.id %> },
       {
         connected: function() {
           console.log('connected');

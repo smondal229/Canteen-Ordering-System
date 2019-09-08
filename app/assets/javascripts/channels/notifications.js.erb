@@ -1,7 +1,7 @@
 (function() {
   <% Employee.all.each do |emp|%>
     App['<%="notify-employee#{emp.id}"%>'] = App.cable.subscriptions.create(
-      {channel: "NotificationsChannel", class: "Employee", id: <%= emp.id %> },
+      { channel: "NotificationsChannel", class: "Employee", id: <%= emp.id %> },
       {
         connected: function() {
         console.log("connected");
