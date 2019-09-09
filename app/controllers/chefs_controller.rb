@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-  before_action :authenticate_chef, only: [:show, :edit, :update]
+  before_action :authenticate_chef, only: [:show, :edit, :update, :read_all_notifications]
   before_action :authenticate_admin, only: [:approve, :reject, :notification_visible]
   before_action :set_chef, only: [:approve, :reject, :notification_visible]
   

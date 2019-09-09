@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 
         if user.save
           session[user_class.downcase.concat("_id").to_sym] = user.id
-          redirect_to( employee_path(user.id), flash: {success: "Sign Up successfully"})
+          redirect_to( employee_path(user.id), flash: { success: "Sign Up successfully"})
         else
           @errors = user.errors.full_messages
           render "signup"
@@ -29,7 +29,7 @@ class HomeController < ApplicationController
         
         if user.save
           session[user_class.downcase.concat("_id").to_sym] = user.id
-          redirect_to( chef_path(user.id), flash: {success: "Sign Up successfully"})
+          redirect_to( chef_path(user.id), flash: { success: "Sign Up successfully"})
         else
           @errors = user.errors.full_messages
           render "signup"

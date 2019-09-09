@@ -20,10 +20,23 @@
   color: white;
 }
 
+.dropdown-menu{
+  max-height: 300px;
+  overflow: auto;
+}
+
 .sent {
   background-color: rgb(156, 253, 173);
 }
 
 .recieved {
   background-color: rgb(225, 230, 224);
+}
+
+.unread > .content {
+  color: rgb(255, 103, 15);
+}
+
+.read > .content {
+  color: rgb(116, 116, 116);
 }

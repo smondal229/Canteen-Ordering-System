@@ -3,7 +3,7 @@
 <%= form_for(:user) do |f| %>
   <ul class = "list-group">
     <% @errors.try(:each) do |message| %>
-      <li class = "list-group-item"><%= message %></li>
+      <li class = "list-group-item list-group-item-danger"><%= message %></li>
     <% end %>
   </ul>
 

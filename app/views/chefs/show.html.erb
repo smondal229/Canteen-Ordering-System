@@ -15,20 +15,19 @@
 
       received: function(data) {
         console.log(data["notification"]);
-        let a = "[data-notifications='employee'+chef_id]";
-      
-        if($(a).is(':hidden')) {
-          $(a).siblings('.dropdown-toggle').dropdown('toggle');
-        }
+        let b = '[data-notifications=chef'+ chef_id+']';
+        
+        current_count = $(b).siblings('.dropdown-toggle').children('.badge').html();
+        $(b).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count)+1);
 
-        $(a).prepend(data["notification"]);
+        $(b).prepend(data["notification"]);
       }
     }
     );
     console.log("New chef channel added");
   }
 
-  <% if @chef.approved %>
+
   if(App['msg-chef'+chef_id] == null)
     {
       App['msg-chef'+chef_id] = App.cable.subscriptions.create(
@@ -51,7 +50,7 @@
       );
       console.log("Chef msg channel created");
     }
-  <% end %>
+
 </script>
 
 <% if @chef.name.blank? || @chef.phone.blank? || @chef.food_store.blank? %>

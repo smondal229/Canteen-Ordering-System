@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       put "reject"
       put "notification_visible"
     end
-    resources :notifications, only: [:index]
+    
     resources :messages, only: [:new, :create, :index]
   end
 
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       put "reject"
       put "notification_visible"
     end
-    resources :notifications, only: [:index]
+
     resources :messages, only: [:new, :create, :index]
   end
 
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     get "visible/employee_order_notification"
     get "visible/chef_order_notification"
   end
+
+  resources :notifications, only: [:update]
 
   resources :statuses, except: [:show]
 

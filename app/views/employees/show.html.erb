@@ -15,11 +15,10 @@
 
         received: function(data) {
           console.log(data["notification"]);
-          let a = '[data-notifications = Employee'+ emp_id +']';
+          let a = '[data-notifications = employee'+ emp_id +']';
 
-          if($(a).is(':hidden')) {
-            $(a).siblings('.dropdown-toggle').dropdown('toggle');
-          }
+          current_count1 = $(a).siblings('.dropdown-toggle').children('.badge').html();
+          $(a).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count1)+1);
 
           $(a).prepend(data["notification"]);
         }

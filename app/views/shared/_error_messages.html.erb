@@ -1,7 +1,7 @@
 <% if target.errors.any? %>
-  <ul class = "error-list">
+  <ul class = "list-group">
     <% target.errors.full_messages.each do |message| %>
-      <li class = "error-list-group text-danger"><%= message %></li>
+      <li class="list-group-item list-group-item-danger"><%= message %></li>
     <% end %>
   </ul>
 <% end %>

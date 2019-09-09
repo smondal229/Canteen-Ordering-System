@@ -4,10 +4,12 @@
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
     Notifications
+    <span class = "badge badge-secondary" >
+      <%= @notifications.where(read: false).count %>
+    </span>
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-notifications="<%="employee"+current_employee.id.to_s %>" >
-    <%= render(partial:"notifications/notification", 
-      collection: current_employee.notifications.order("created_at desc")) %>
+    <%= render(partial:"notifications/notification", collection: @notifications.order("created_at desc")) %>
   </div>
 </li>
 <li class = "nav-item">
@@ -17,7 +19,12 @@
   <%= link_to("Order Food", foods_path, class: "nav-link") %>
 </li>
 <li class = "nav-item">
-  <%= link_to("View Cart", cart_path(set_current_cart), class: "nav-link") %>
+  <%= link_to(cart_path(set_current_cart), class: "nav-link") do %>
+    View Cart
+    <span class = "badge badge-secondary">
+      <%= @current_cart.cart_items.count  %>
+    </span>
+  <% end %>
 </li>
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">

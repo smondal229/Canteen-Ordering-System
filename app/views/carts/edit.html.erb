@@ -1,6 +1,6 @@
 <% @page_title = "Edit Order" %>
 
-<%= form_for(@cart, html: { class: "form-inline m-3" }, remote: true) do |f| %>
+<%= form_for(@cart, html: { class: "form-inline m-3" }) do |f| %>
   <div>
     <% if current_admin %>
       <%= f.select(:priority, options_for_select(["Low", "High"], select: @cart.status),

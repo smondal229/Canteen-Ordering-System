@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-
+  skip_before_action :set_notification_badge, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_admin, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_category, only: [:edit, :update, :destroy, :show]
   

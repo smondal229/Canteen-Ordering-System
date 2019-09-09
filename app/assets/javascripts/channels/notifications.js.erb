@@ -12,10 +12,9 @@
         received: function(data) {
           console.log(data["notification"]);
           let a = "[data-notifications='employee"+"<%=emp.id%>"+"']";
-          
-          if($(a).is(':hidden')) {
-            $(a).siblings('.dropdown-toggle').dropdown('toggle');
-          }
+
+          current_count1 = $(a).siblings('.dropdown-toggle').children('.badge').html();
+          $(a).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count1)+1);
 
           $(a).prepend(data["notification"]);
         }
@@ -34,11 +33,10 @@
         received: function(data) {
           console.log(data["notification"]);
           let b = "[data-notifications='chef"+"<%=chef.id%>"+"']";
+                    
+          current_count2 = $(b).siblings('.dropdown-toggle').children('.badge').html();
+          $(b).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count2)+1);
 
-          if($(b).is(':hidden')){
-            $(b).siblings('.dropdown-toggle').dropdown('toggle');
-          }
-          
           $(b).prepend(data["notification"]);
         }
       }

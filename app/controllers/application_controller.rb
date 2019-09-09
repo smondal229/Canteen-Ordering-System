@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :set_notification_badge
+  
   protect_from_forgery
   
   include AdminsHelper
@@ -25,6 +27,14 @@ class ApplicationController < ActionController::Base
         redirect_back(fallback_location: root_path, flash: { danger: "You are already logged in" })
       elsif current_admin
         redirect_back(fallback_location: admins_root_path, flash: { danger: "You are already logged in" })
+      end
+    end
+    
+    def set_notification_badge
+      if current_employee
+        @notifications = current_employee.notifications
+      elsif current_chef
+        @notifications = current_chef.notifications
       end
     end
 

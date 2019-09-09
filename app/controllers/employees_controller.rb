@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :authenticate_employee, only: [:show, :edit, :update]
+  before_action :authenticate_employee, only: [:show, :edit, :update, :read_all_notifications]
   before_action :authenticate_admin, only: [:approve, :reject, :notification_visible]
   before_action :set_employee, only: [:approve, :reject, :notification_visible]
 

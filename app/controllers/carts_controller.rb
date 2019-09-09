@@ -28,8 +28,9 @@ class CartsController < ApplicationController
         if current_chef.order_notification_visible
           Notification.create(notifiable: current_chef, content: "Order id #{@cart.id} is #{ @cart.status.name }")
         end
-      end
 
+        redirect_to(recieved_carts_path, flash: { success: "Update done" })
+      end
     else
       redirect_back(fallback_location: root_path, flash: { danger: "Update cannot be done" })
     end

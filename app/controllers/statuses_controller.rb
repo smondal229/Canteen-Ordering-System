@@ -1,4 +1,5 @@
 class StatusesController < ApplicationController
+  skip_before_action :set_notification_badge
   before_action :authenticate_admin
   before_action :set_status, only: [:edit, :update, :destroy]
 

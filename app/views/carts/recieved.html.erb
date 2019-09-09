@@ -46,7 +46,7 @@
               <th colspan="2"><%= "Delivered At : #{ order.delivered_at.to_formatted_s(:long) }" %></th>
             <% else %>
               <th colspan = "2"></th>
-              <td><%= link_to("Change Order Status", edit_cart_path(order), class: "btn btn-primary", remote: true) %><td>
+              <td><%= link_to("Change Order Status", edit_cart_path(order), class: "btn btn-primary") %><td>
             <% end %>
           <% end %>
         </tr>
