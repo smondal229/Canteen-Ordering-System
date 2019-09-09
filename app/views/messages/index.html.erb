@@ -3,6 +3,7 @@
 <%= render(partial: "message_form")%>
 
 <ul id = "messages" data-messages = "<%= @user.class.name + @user.id.to_s %>">
+
   <% @messages.each do |message| %>
     <%= render(partial: "message", locals: { message: message }) %>
   <% end %>  

@@ -10,17 +10,17 @@
         disconnected: function() {},
 
         received: function(data) {
-          console.log(data['message']);
           let employee_div = <%= "\"[data-messages = 'Employee#{emp.id}']\"" %>;
           console.log(employee_div);
           
           $(employee_div).prepend(data['message']);
         }
-      });
+      }
+    );
   <% end %>
 
   <% Chef.where(approved: true).each  do |chef| %>
-    App['msg<%="chef#{chef.id}"%>'] = App.cable.subscriptions.create(
+    App['msg-<%="chef#{chef.id}"%>'] = App.cable.subscriptions.create(
       { channel: "MessagesChannel", class: "Chef", id: <%= chef.id %> },
       {
         connected: function() {
@@ -31,11 +31,12 @@
 
         received: function(data) {
           console.log(data['message']);
-          let chef_div = <%= "\"[data-messages = 'Chef#{chef.id}']\"" %>;
+          let chef_div = <%= "\"[data-messages = 'Chef#{chef.id}']\"" %>; 
           console.log(chef_div);
 
           $(chef_div).prepend(data['message']);
         }
-      });
+      }
+    );
   <% end %>
 }).call(this);

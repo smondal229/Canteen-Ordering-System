@@ -1,5 +1,59 @@
 <% @page_title = "Profile Dashboard" %>
 
+<script>
+  var emp_id = <%= @employee.id %>
+  if(App['notify-employee' + emp_id ] == null) {
+    
+    App['notify-employee' + emp_id ] = App.cable.subscriptions.create(
+      { channel: "NotificationsChannel", class: "Employee", id: emp_id },
+      {
+        connected: function() {
+          console.log("connected");
+        },
+
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data["notification"]);
+          let a = '[data-notifications = Employee'+ emp_id +']';
+
+          if($(a).is(':hidden')) {
+            $(a).siblings('.dropdown-toggle').dropdown('toggle');
+          }
+
+          $(a).prepend(data["notification"]);
+        }
+      }
+    );
+    console.log("new employee notification channel");
+  }
+
+  <% if @employee.approved %>
+    if(App['msg-employee'+emp_id] == null)
+    {
+      App['msg-employee'+emp_id] = App.cable.subscriptions.create(
+        { channel: "MessagesChannel", class: "Employee", id: emp_id },
+        {
+          connected: function() {
+            console.log('connected');
+          },
+  
+          disconnected: function() {},
+  
+          received: function(data) {
+            console.log(data['message']);
+            let employee_div = '[data-messages = Employee'+emp_id+']';
+            console.log(employee_div);
+            
+            $(employee_div).prepend(data['message']);
+          }
+        }
+      );
+      console.log("employee msg channel created");
+    }
+  <% end %>
+</script>
+
 <% if @employee.name.blank? || @employee.phone.blank? || @employee.company.blank? %>
   <%= link_to("Complete Your Profile", edit_employee_path(@current_employee), class:"btn btn-primary m-5 w-25") %>
 <% end %>

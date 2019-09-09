@@ -4,18 +4,22 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new(sendable: @user)
-    @messages = Message.where(recipientable: @user).order("created_at desc")
+    @messages = Message.where(recipientable: @user).or(Message.where(sendable:@user)).order("created_at desc")
   end
 
   def create
     @message = Message.new(message_params)
     
-    if @message.save
-      channel = "#{@message.recipientable_type}#{@message.recipientable_id}:messages_channel"
+    respond_to do |format|
+      if @message.save
+        recipient_channel = "#{@message.recipientable_type}#{@message.recipientable_id}:messages_channel"
 
-      ActionCable.server.broadcast(channel, {
-        message: ApplicationController.renderer.render(partial: "messages/message", locals: { message: @message })
-      })
+        ActionCable.server.broadcast(recipient_channel, {
+          message: ApplicationController.renderer.render(partial: "messages/message", locals: { message: @message })
+        })
+
+        format.js
+      end
     end
   end
 
