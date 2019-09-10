@@ -21,36 +21,37 @@
           $(a).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count1)+1);
 
           $(a).prepend(data["notification"]);
+
         }
       }
     );
     console.log("new employee notification channel");
   }
 
-  <% if @employee.approved %>
-    if(App['msg-employee'+emp_id] == null)
-    {
-      App['msg-employee'+emp_id] = App.cable.subscriptions.create(
-        { channel: "MessagesChannel", class: "Employee", id: emp_id },
-        {
-          connected: function() {
-            console.log('connected');
-          },
-  
-          disconnected: function() {},
-  
-          received: function(data) {
-            console.log(data['message']);
-            let employee_div = '[data-messages = Employee'+emp_id+']';
-            console.log(employee_div);
-            
-            $(employee_div).prepend(data['message']);
-          }
+
+  if(App['msg-employee'+emp_id] == null)
+  {
+    App['msg-employee'+emp_id] = App.cable.subscriptions.create(
+      { channel: "MessagesChannel", class: "Employee", id: emp_id },
+      {
+        connected: function() {
+          console.log('connected');
+        },
+
+        disconnected: function() {},
+
+        received: function(data) {
+          console.log(data['message']);
+          let employee_div = '[data-messages = Employee'+emp_id+']';
+          console.log(employee_div);
+          
+          $(employee_div).prepend(data['message']);
         }
-      );
-      console.log("employee msg channel created");
-    }
-  <% end %>
+      }
+    );
+    console.log("employee msg channel created");
+  }
+
 </script>
 
 <% if @employee.name.blank? || @employee.phone.blank? || @employee.company.blank? %>
@@ -78,12 +79,14 @@
     <% end %>
   </div>
 
-  <div>
+  <div id = "approve-employee<%= @employee.id %>">
     <strong>Approved : </strong>
     <% if @employee.approved %>
-      <span>Approved</span>
+      <span class = "text-success">Approved</span>
+    <% elsif @employee.approved.nil? %>
+      <span class = "text-info">Pending</span>
     <% else %>
-      <span>Not Approved</span>
+      <span class = "text-danger">Rejected</span>
     <% end %>
   </div>
 </div>

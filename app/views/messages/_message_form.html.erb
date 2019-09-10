@@ -1,5 +1,5 @@
 <%= form_for([@user, @message], remote: true) do |f| %>
-  <%= render(partial: "shared/error_messages", locals: { target: @message }) %>
+  <div class = "error-container"></div>
 
   <%= f.hidden_field :sendable_id, value: @message.sendable_id %>
   <%= f.hidden_field :sendable_type, value: @message.sendable_type %>

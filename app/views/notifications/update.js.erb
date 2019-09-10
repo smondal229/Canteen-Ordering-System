@@ -1,3 +1,7 @@
 $('#notification-<%= @notification.id %>').removeClass('unread').addClass('read');
 
 $('#notification-<%= @notification.id %> > .mark-btn').remove();
+
+current_count = $('#notification-<%= @notification.id %>').parent(".dropdown-menu").siblings("#dropdownMenuLink").children(".badge").html()
+
+$('#notification-<%= @notification.id %>').parent(".dropdown-menu").siblings("#dropdownMenuLink").children(".badge").html(parseInt(current_count)-1)

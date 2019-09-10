@@ -1,8 +1,10 @@
+<% if @message.errors.any? %>
+  $('.error-container').html("<%= j render(partial: 'shared/error_messages', locals: { target: @message }) %>");
+<% else %>
+  $('.error-container').html("");
 
+  sent_message = "<%= j render(partial: 'message', locals: { message: @message }) %>"
+  $("[data-messages='<%= @message.sendable_type %><%= @message.sendable_id %>']").prepend(sent_message)
 
-sent_message = "<li class='list-group-item sent'><div class = 'text-right'><strong><%= @message.sendable.email %> : </strong><span><%= @message.body %></span></div><div><span class = 'd-block text-info text-right'><%= @message.created_at.to_formatted_s(:long) %></span></div></li>";
-
-console.log(sent_message);
-
-$("[data-messages='<%= @message.sendable_type %><%= @message.sendable_id %>']").prepend(sent_message);
-$("#message_body").val('');
+  $("#message_body").val('');
+<% end %>

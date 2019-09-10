@@ -21,6 +21,7 @@
         $(b).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count)+1);
 
         $(b).prepend(data["notification"]);
+
       }
     }
     );
@@ -81,11 +82,11 @@
 <div>
   <strong>Approved : </strong>
   <% if @chef.approved %>
-    <span>Approved</span>
+    <span class="text-success">Approved</span>
   <% elsif @chef.approved.nil? %>
-    <span>Pending</span>
+    <span class="text-info">Pending</span>
   <% else %>
-    <span>Rejected</span>
+    <span class="text-danger">Not Approved</span>
   <% end %>
 </div>
 

@@ -4,7 +4,7 @@
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
     Notifications
-    <span class = "badge badge-secondary" >
+    <span class = "badge badge-warning" >
       <%= @notifications.where(read: false).count %>
     </span>
   </a>
@@ -21,7 +21,7 @@
 <li class = "nav-item">
   <%= link_to(cart_path(set_current_cart), class: "nav-link") do %>
     View Cart
-    <span class = "badge badge-secondary">
+    <span class = "badge badge-warning">
       <%= @current_cart.cart_items.count  %>
     </span>
   <% end %>

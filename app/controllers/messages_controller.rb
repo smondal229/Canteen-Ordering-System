@@ -17,9 +17,8 @@ class MessagesController < ApplicationController
         ActionCable.server.broadcast(recipient_channel, {
           message: ApplicationController.renderer.render(partial: "messages/message", locals: { message: @message })
         })
-
-        format.js
       end
+      format.js
     end
   end
 
