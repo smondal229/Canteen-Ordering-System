@@ -20,7 +20,6 @@
 
           if(data["notification"].indexOf("approved")!= -1)
           {
-            console.log("#approveEmployee<%= emp.id %>");
             $("#approveEmployee<%= emp.id %>").html("<strong>Approved : </strong><span class = 'text-success'>Approved</span>");
           }
           else if(data["notification"].indexOf("rejected")!= -1)
@@ -48,6 +47,15 @@
           $(b).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count2)+1);
 
           $(b).prepend(data["notification"]);
+
+          if(data["notification"].indexOf("approved")!= -1)
+          {
+            $("#approveChef<%= chef.id %>").html("<strong>Approved : </strong><span class = 'text-success'>Approved</span>");
+          }
+          else if(data["notification"].indexOf("rejected")!= -1)
+          {
+            $("#approveChef<%= chef.id %>").html("<strong>Approved : </strong><span class = 'text-danger'>Rejected</span>");
+          }
         }
       }
     );

@@ -22,6 +22,15 @@
 
         $(b).prepend(data["notification"]);
 
+        if(data["notification"].indexOf("approved")!= -1)
+        {
+          $('#approveChef' + chef_id).html("<strong>Approved : </strong><span class = 'text-success'>Approved</span>");
+        }
+        else if(data["notification"].indexOf("rejected")!= -1)
+        {
+          $('#approveChef' + chef_id ).html("<strong>Approved : </strong><span class = 'text-danger'>Rejected</span>");
+        }
+
       }
     }
     );
@@ -79,7 +88,7 @@
   </div>
 </div>
 
-<div>
+<div id="approveChef<%= @chef.id %>">
   <strong>Approved : </strong>
   <% if @chef.approved %>
     <span class="text-success">Approved</span>
