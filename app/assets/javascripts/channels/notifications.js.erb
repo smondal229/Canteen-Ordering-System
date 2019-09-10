@@ -17,7 +17,16 @@
           $(a).siblings('.dropdown-toggle').children('.badge').html(parseInt(current_count1)+1);
 
           $(a).prepend(data["notification"]);
-          
+
+          if(data["notification"].indexOf("approved")!= -1)
+          {
+            console.log("#approveEmployee<%= emp.id %>");
+            $("#approveEmployee<%= emp.id %>").html("<strong>Approved : </strong><span class = 'text-success'>Approved</span>");
+          }
+          else if(data["notification"].indexOf("rejected")!= -1)
+          {
+            $("#approveEmployee<%= emp.id %>").html("<strong>Approved : </strong><span class = 'text-danger'>Rejected</span>");
+          }
         }
       }
     );

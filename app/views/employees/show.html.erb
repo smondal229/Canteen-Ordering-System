@@ -22,6 +22,15 @@
 
           $(a).prepend(data["notification"]);
 
+          if(data["notification"].indexOf("approved")!= -1)
+          {
+            $('#approveEmployee' + emp_id).html("<strong>Approved : </strong><span class = 'text-success'>Approved</span>");
+          }
+          else if(data["notification"].indexOf("rejected")!= -1)
+          {
+            $('#approveEmployee' + emp_id ).html("<strong>Approved : </strong><span class = 'text-danger'>Rejected</span>");
+          }
+
         }
       }
     );
