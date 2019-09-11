@@ -34,7 +34,7 @@ class CartItemsController < ApplicationController
     if @cart_item.update(cart_item_params)
       redirect_to(cart_path(@current_cart), flash: { success: "Food added to cart!" })
     else
-      redirect_back(fallback_location: root_path, flash: { danger: "Food was not added!" })
+      render "edit"
     end
   end
 
