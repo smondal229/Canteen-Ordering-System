@@ -21,7 +21,7 @@ class ChefsController < ApplicationController
   end
 
   def approve
-    if @chef.update(approved: true)
+    if @chef.approve_access
       Notification.create(notifiable: @chef, content: "You are approved to access food store")
       redirect_back(fallback_location: admins_root_path, flash: { success: "Chef Access Approved" })
     else
@@ -30,7 +30,7 @@ class ChefsController < ApplicationController
   end
 
   def reject
-    if @chef.update(approved: false)
+    if @chef.reject_access
       Notification.create(notifiable: @chef, content: "You have been rejected by the admin")
 
       redirect_back(fallback_location: admins_root_path, flash: { success: "Chef Access Rejected" })

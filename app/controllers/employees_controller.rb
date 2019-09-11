@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
   end
 
   def approve
-    if @employee.update(approved: true)
+    if @employee.approve_access
       Notification.create(notifiable: @employee, content: "You have been approved by the admin")
 
       redirect_back(fallback_location: admins_root_path, flash: { success: "Employee Access Approved" })
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
   end
 
   def reject
-    if @employee.update(approved: false)
+    if @employee.reject_access
       Notification.create(notifiable: @employee, content: "You have been rejected by the admin")
 
       redirect_back(fallback_location: admins_root_path, flash: { success: "Employee Access Rejected" })

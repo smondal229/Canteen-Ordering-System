@@ -52,15 +52,15 @@ class CartsController < ApplicationController
   end
 
   def history
-    @orders = Cart.includes(:employee, :food_store, {cart_items: :food}, :status).where(employee_id: current_employee).where.not(placed_at: nil).order("placed_at DESC")
+    @orders = Cart.fetch_history.where(employee_id: current_employee).order_placed_desc
   end
 
   def pending
-    @orders = Cart.includes({employee: :company}, :food_store, :status).where.not(placed_at: nil).order("placed_at DESC")
+    @orders = Cart.fetch_pending.order_placed_desc
   end
 
   def recieved
-    @orders = Cart.includes({ employee: :company }, :food_store, { cart_items: :food }, :status).where(food_store: current_chef.food_store).where.not(priority: nil).order("placed_at, priority DESC")
+    @orders = Cart.fetch_recieved.where(food_store: current_chef.food_store).order_placed_priority_desc
   end
 
   private

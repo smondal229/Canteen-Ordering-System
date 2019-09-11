@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new(sendable: @user)
-    @messages = Message.where(recipientable: @user).or(Message.where(sendable:@user)).order("created_at desc")
+    @messages = Message.where(recipientable: @user).or(Message.where(sendable: @user)).order_desc
   end
 
   def create
@@ -50,6 +50,6 @@ class MessagesController < ApplicationController
         @recipient_class = "Employee".classify.constantize
       end
 
-      @recipients = @recipient_class.where(approved: true)
+      @recipients = @recipient_class.only_approved
     end
 end

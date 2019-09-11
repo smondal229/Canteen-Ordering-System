@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
   before_action :set_status, only: [:edit, :update, :destroy]
 
   def index
-    @statuses = Status.all
+    @statuses = Status.order_desc
   end
 
   def new

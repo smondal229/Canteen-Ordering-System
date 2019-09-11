@@ -4,7 +4,7 @@ class FoodStoresController < ApplicationController
   before_action :set_foodstore, only: [:edit, :update, :destroy, :show, :menu]
   
   def index
-    @food_stores = FoodStore.all.paginate(page: params[:page])
+    @food_stores = FoodStore.order_by_name.paginate(page: params[:page])
   end
   
   def new

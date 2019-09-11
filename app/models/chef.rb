@@ -4,9 +4,9 @@ class Chef < ApplicationRecord
   
   belongs_to :food_store, optional: true
 
-  has_many :notifications, as: :notifiable, dependent: :destroy
-  has_many :messages, as: :sendable, dependent: :destroy
-  has_many :messages, as: :recipientable, dependent: :destroy
+  has_many :notifications, as: :notifiable,     dependent: :destroy
+  has_many :messages,      as: :sendable,       dependent: :destroy
+  has_many :messages,      as: :recipientable,  dependent: :destroy
 
   before_save { self.name = self.name.to_s.titlecase }
   before_save { self.email = self.email.to_s.downcase }
@@ -15,7 +15,10 @@ class Chef < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
   validate :cannot_approve_without_food_store, on: :update
 
-  
+  scope :approve_access,  -> { update(approved: true) }
+  scope :reject_access,   -> { update(approved: false) }
+  scope :only_approved,   -> { where(approved: true) }
+
   def cannot_approve_without_food_store
     if food_store.nil? && !approved.nil?
       errors[:base] << "The chef does not have any food store"

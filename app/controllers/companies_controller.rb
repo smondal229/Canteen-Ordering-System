@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:edit, :update, :destroy]
 
   def index
-    @companies = Company.all
+    @companies = Company.order_desc
   end
 
   def new

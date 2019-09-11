@@ -9,7 +9,7 @@
     <div class="mark-btn text-right">
       <%= link_to("Mark as read", notification_path(notification), method: :put, data: { remote: true }, class: "btn btn-sm btn-warning") %>
     </div>
-    <small class = "float-right text-info"><%= notification.created_at.to_formatted_s(:short) %></small>
+    <small class = "float-right text-info"><%= notification.get_datetime %></small>
   <% end %>
 <% end %>
 <div class = "dropdown-divider"></div>

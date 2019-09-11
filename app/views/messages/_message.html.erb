@@ -5,13 +5,13 @@
       <span><%= message.body %></span>
     </div>
     <div>  
-      <span class = "d-block text-info text-right"><%= message.created_at.to_formatted_s(:long) %></span>
+      <span class = "d-block text-info text-right"><%= message.get_datetime %></span>
     </div>
   </li>
 <% else %>
   <li class = "list-group-item recieved">
     <strong><%= message.sendable.email + " : "%></strong>
     <span><%= message.body %></span>
-    <span class = "d-block text-info text-right"><%= message.created_at.to_formatted_s(:long) %></span>
+    <span class = "d-block text-info text-right"><%= message.get_datetime %></span>
   </li>
 <% end %>

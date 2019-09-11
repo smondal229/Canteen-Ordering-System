@@ -2,8 +2,8 @@ class HomeController < ApplicationController
   before_action :logged_in?, only:[:signup, :create]
 
   def index
-    @categories = Category.order(:name).limit(10)
-    @food_stores = FoodStore.order(:name).limit(10)
+    @categories = Category.order_by_name.limit(10)
+    @food_stores = FoodStore.order_by_name.limit(10)
   end
 
   def signup
