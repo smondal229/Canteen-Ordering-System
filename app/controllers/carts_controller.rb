@@ -46,7 +46,7 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    @current_cart.update(placed_at: Time.now, total_price: @current_cart.total)
+    @current_cart.checkout_cart
     session[:cart_id] = nil
     redirect_to(history_carts_path, flash: { success: "Your order has been placed " })
   end

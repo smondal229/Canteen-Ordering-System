@@ -4,7 +4,7 @@ class Employee < ApplicationRecord
   
   belongs_to :company, optional: true
 
-  has_many :carts
+  has_many :carts,                              dependent: :destroy
   has_many :notifications,  as: :notifiable,    dependent: :destroy
   has_many :messages,       as: :sendable,      dependent: :destroy
   has_many :messages,       as: :recipientable, dependent: :destroy
@@ -16,9 +16,15 @@ class Employee < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
   validate :cannot_approve_without_company, on: :update
 
-  scope :approve_access,  -> { update(approved: true) }
-  scope :reject_access,   -> { update(approved: false) }
   scope :only_approved,   -> { where(approved: true) }
+
+  def approve_access
+    update(approved: true)
+  end
+
+  def reject_access
+    update(approved: false)
+  end
 
   def cannot_approve_without_company
     if company.nil? && !approved.nil?

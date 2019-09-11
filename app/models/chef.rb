@@ -15,10 +15,16 @@ class Chef < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
   validate :cannot_approve_without_food_store, on: :update
 
-  scope :approve_access,  -> { update(approved: true) }
-  scope :reject_access,   -> { update(approved: false) }
   scope :only_approved,   -> { where(approved: true) }
 
+  def approve_access
+    update(approved: true)
+  end
+
+  def reject_access
+    update(approved: false)
+  end
+  
   def cannot_approve_without_food_store
     if food_store.nil? && !approved.nil?
       errors[:base] << "The chef does not have any food store"

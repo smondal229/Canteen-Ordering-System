@@ -16,7 +16,7 @@ class FoodsController < ApplicationController
       set_food_store
       @foods = Food.includes(:food_store).where(food_store: params[:food_store])
     else
-      @foods = Food.order_by_name
+      @foods = Food.order_desc
     end
 
     @foods = @foods.paginate(page: params[:page])

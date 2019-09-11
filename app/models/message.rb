@@ -6,8 +6,8 @@ class Message < ApplicationRecord
 
   scope :order_desc, -> { order("created_at desc") }
   
-  def self.get_datetime
-    self.created_at..to_formatted_s(:long)
+  def get_datetime
+    created_at.to_formatted_s(:long)
   end
   
 end

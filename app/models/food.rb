@@ -11,6 +11,6 @@ class Food < ApplicationRecord
   
   before_save { self.name = self.name.to_s.titlecase}
 
-  scope :order_by_name, -> { order("name") }
+  scope :order_desc, -> { order("created_at desc") }
   
 end

@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
     @notification = Notification.find(params[:id])
 
     respond_to do |format|
-      if @notification.read
+      if @notification.notified
         format.js
       end
     end

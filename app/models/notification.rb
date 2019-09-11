@@ -1,7 +1,5 @@
 class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
-
-  scope :read, -> { update(read: true) }
   
   after_create_commit {
     channel = "#{self.notifiable_type}#{self.notifiable_id}:notifications_channel"
@@ -11,8 +9,12 @@ class Notification < ApplicationRecord
     })
   }
 
-  def self.get_datetime
-    self.created_at..to_formatted_s(:short)
+  def notified
+    update(read: true)
+  end
+
+  def get_datetime
+    created_at.to_formatted_s(:short)
   end
 
 end
