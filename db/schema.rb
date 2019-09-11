@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_114401) do
+ActiveRecord::Schema.define(version: 2019_09_11_121011) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.datetime "created_at", default: "2019-09-11 12:08:45", null: false
     t.datetime "updated_at", default: "2019-09-11 12:08:45", null: false
   end
 
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "quantity", default: 1
+    t.integer "quantity", default: 1, null: false
     t.bigint "food_id"
     t.text "description"
     t.bigint "cart_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_114401) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", default: "2019-09-11 12:08:48", null: false
     t.datetime "updated_at", default: "2019-09-11 12:08:48", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_114401) do
     t.string "uid"
     t.string "name"
     t.string "email", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.string "phone"
     t.text "oauth_token"
     t.datetime "oauth_expires_at"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_114401) do
     t.string "uid"
     t.string "name"
     t.string "email", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.string "phone"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_114401) do
   end
 
   create_table "food_stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", default: "2019-09-11 12:08:56", null: false
     t.datetime "updated_at", default: "2019-09-11 12:08:56", null: false
     t.index ["name"], name: "index_food_stores_on_name", unique: true
