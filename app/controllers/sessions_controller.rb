@@ -5,8 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    
-
     if params[:user].present?
       user = find_user_by_email(params[:user][:email]) if params[:user][:email].present?
 
@@ -36,7 +34,7 @@ class SessionsController < ApplicationController
       end
 
     end
-    
+
   end
 
   def destroy
@@ -46,7 +44,7 @@ class SessionsController < ApplicationController
 
   private
     def find_user_by_email(email)
-      user = Employee.find_by(email: email)||Chef.find_by(email: email)||Admin.find_by(email: email)
+      user = Employee.find_by(email: email) || Chef.find_by(email: email) || Admin.find_by(email: email)
     end
 
     def find_path(user)
