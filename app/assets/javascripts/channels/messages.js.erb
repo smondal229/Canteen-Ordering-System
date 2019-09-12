@@ -1,5 +1,5 @@
 (function() {
-  <% Employee.where(approved: true).each do |emp| %>
+  <% Employee.only_approved.each do |emp| %>
     App['msg-<%="employee#{emp.id}"%>'] = App.cable.subscriptions.create(
       { channel: "MessagesChannel", class: "Employee", id: <%= emp.id %> },
       {
@@ -19,7 +19,7 @@
     );
   <% end %>
 
-  <% Chef.where(approved: true).each  do |chef| %>
+  <% Chef.only_approved.each  do |chef| %>
     App['msg-<%="chef#{chef.id}"%>'] = App.cable.subscriptions.create(
       { channel: "MessagesChannel", class: "Chef", id: <%= chef.id %> },
       {
