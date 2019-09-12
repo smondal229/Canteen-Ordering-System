@@ -2,16 +2,18 @@
 
 <%= form_for([@food_store, @food_gallery]) do |f| %>
   <%= render(partial: "shared/error_messages", locals: { target: @food_gallery }) %>
-  <div class = "form-inline">
+
+  <div class = "form-inline my-3">
     <%= f.label(:image, "Add image") %>
-    <%= f.file_field(:image, class: "form-control")%>
+    <%= f.file_field(:image, class: "form-control btn btn-light")%>
   </div>
-  <div class = "form-group">
-    <%= f.label(:description, "Add food description") %>
+
+  <div class = "form-group my-2">
+    <%= f.label(:description, "Add food description ( if any )") %>
     <%= f.text_area(:description, class: "form-control")%>
   </div>
 
   <div class = "form-group">
-    <%= f.submit "Submit", class: "m-2" %>
+    <%= f.submit "Submit", class: "btn btn-primary m-2" %>
   </div>
 <% end %>
