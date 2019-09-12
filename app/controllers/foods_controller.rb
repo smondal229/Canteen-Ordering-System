@@ -5,7 +5,6 @@ class FoodsController < ApplicationController
   before_action :belongs_to_food_store?, only: [:edit, :update, :destroy]
   
   def index
-
     if params[:food_store].present? && params[:category].present?
       set_food_store
       @foods = Food.includes([:category, :food_store]).where(category: params[:category], food_store: params[:food_store])   
