@@ -6,4 +6,5 @@ class Category < ApplicationRecord
   before_save { self.name = self.name.to_s.titlecase}
 
   scope :order_by_name, -> { order("name") }
+  
 end

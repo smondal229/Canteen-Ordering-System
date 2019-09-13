@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_121011) do
+ActiveRecord::Schema.define(version: 2019_09_09_143345) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
-    t.string "password_digest", null: false
-    t.datetime "created_at", default: "2019-09-11 12:08:45", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:45", null: false
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
     t.bigint "food_id"
     t.text "description"
     t.bigint "cart_id"
-    t.datetime "created_at", default: "2019-09-11 12:08:47", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:47", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["food_id"], name: "index_cart_items_on_food_id"
   end
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
     t.integer "total_price"
     t.datetime "placed_at"
     t.datetime "delivered_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "status_id"
     t.integer "priority"
     t.index ["employee_id"], name: "index_carts_on_employee_id"
@@ -45,8 +47,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", default: "2019-09-11 12:08:48", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:48", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
@@ -55,23 +57,23 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
     t.string "uid"
     t.string "name"
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
     t.string "phone"
     t.text "oauth_token"
     t.datetime "oauth_expires_at"
     t.bigint "food_store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "approved"
     t.boolean "order_notification_visible", default: true
-    t.datetime "created_at", default: "2019-09-11 12:08:49", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:49", null: false
     t.index ["email"], name: "index_chefs_on_email", unique: true
     t.index ["food_store_id"], name: "index_chefs_on_food_store_id"
   end
 
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", default: "2019-09-11 12:08:51", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:51", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_companies_on_name", unique: true
   end
 
@@ -80,15 +82,15 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
     t.string "uid"
     t.string "name"
     t.string "email", null: false
-    t.string "password_digest", null: false
+    t.string "password_digest"
     t.string "phone"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "approved"
     t.boolean "order_notification_visible", default: true
-    t.datetime "created_at", default: "2019-09-11 12:08:53", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:53", null: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
   end
@@ -96,19 +98,19 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
   create_table "food_galleries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "food_store_id"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at", default: "2019-09-11 12:08:54", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:54", null: false
     t.index ["food_store_id"], name: "index_food_galleries_on_food_store_id"
   end
 
   create_table "food_stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", default: "2019-09-11 12:08:56", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:56", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_food_stores_on_name", unique: true
   end
 
@@ -117,8 +119,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
     t.integer "price", null: false
     t.bigint "food_store_id"
     t.bigint "category_id"
-    t.datetime "created_at", default: "2019-09-11 12:08:57", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:57", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_foods_on_category_id"
     t.index ["food_store_id"], name: "index_foods_on_food_store_id"
     t.index ["name", "food_store_id"], name: "index_foods_on_name_and_food_store_id", unique: true
@@ -148,8 +150,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_121011) do
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", default: "2019-09-11 12:08:59", null: false
-    t.datetime "updated_at", default: "2019-09-11 12:08:59", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_statuses_on_name", unique: true
   end
 
