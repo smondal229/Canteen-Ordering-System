@@ -6,6 +6,8 @@ class CreateCarts < ActiveRecord::Migration[5.2]
       t.integer :total_price
       t.datetime :placed_at
       t.datetime :delivered_at
+      
+      t.timestamps
     end
   end
 end
