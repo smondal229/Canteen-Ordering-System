@@ -13,13 +13,14 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = current_employee
-    
-    if @employee.company_id != params[:employee][:company_id]
+
+    if @employee.company_id.to_s != params[:employee][:company_id]
+      flash[:info] = "The updated company access will be approved by the Admin"
       @employee.update(approved: nil)
     end
 
     if @employee.update(employee_params)
-      redirect_to(employee_path(@employee), flash: { success: "Profile information added!" })
+      redirect_to(employee_path(@employee), flash: { success: "Profile information updated!" })
     else
       render "new"
     end

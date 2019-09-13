@@ -1,39 +1,43 @@
 <% @page_title = "Pending Orders" %>
 
-<table class = "table mt-3 mb-5">
-  <thead>
-    <tr>
-      <th>Employee Name</th>
-      <th>Employee Comapany</th>
-      <th>Order to</th>
-      <th>Status</th>
-      <th>Priority</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+<% if @orders.count!= 0 %>
+  <table class = "table mt-3 mb-5">
+    <thead>
       <tr>
-        <td><%= order.employee.name %></td>
-        <td><%= order.employee.company.try(:name) %></td>
-        <td><%= order.food_store.try(:name) %></td>
-
-        <% if order.status.nil? %>
-          <td><%= "Pending" %></td>
-        <% else %>
-          <td><%= order.status.name %></td>
-        <% end %>
-
-        <% if order.priority.nil? %>
-          <td><%= "NA" %></td>
-        <% else %>
-          <td><%= order.priority %></td>
-        <% end %>
-        
-        <td><%= link_to("Edit Priority", edit_cart_path(order), class: "btn btn-primary") %><td>
+        <th>Employee Name</th>
+        <th>Employee Comapany</th>
+        <th>Order to</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.employee.name %></td>
+          <td><%= order.employee.company.try(:name) %></td>
+          <td><%= order.food_store.try(:name) %></td>
+
+          <% if order.status.nil? %>
+            <td><%= "Pending" %></td>
+          <% else %>
+            <td><%= order.status.name %></td>
+          <% end %>
+
+          <% if order.priority.nil? %>
+            <td><%= "NA" %></td>
+          <% else %>
+            <td><%= order.priority %></td>
+          <% end %>
+
+          <td><%= link_to("Edit Priority", edit_cart_path(order), class: "btn btn-primary") %><td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+<% else %>
+  <div class = "text-info">No pending order</div>
+<% end %>
