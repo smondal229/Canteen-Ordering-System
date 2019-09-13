@@ -5,6 +5,8 @@ class CreateFoods < ActiveRecord::Migration[5.2]
       t.integer :price, null: false
       t.references :food_store, foreign_key: { on_delete: :cascade }
       t.references :category, foreign_key: { on_delete: :cascade }
+      
+      t.timestamps
     end
     
     add_index :foods, [:name, :food_store_id], unique: true
