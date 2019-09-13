@@ -10,6 +10,8 @@ class CreateChefs < ActiveRecord::Migration[5.2]
       t.text :oauth_token
       t.datetime :oauth_expires_at
       t.references :food_store, foreign_key: { on_delete: :cascade }
+  
+      t.timestamps
     end
 
     add_index :chefs, :email, unique: true
