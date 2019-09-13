@@ -10,6 +10,7 @@ class Notification < ApplicationRecord
   }
 
   scope :order_desc, -> { order(created_at: :desc) }
+  scope :unread, -> { where(read: false) }
 
   def notified
     update(read: true)

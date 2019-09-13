@@ -6,7 +6,7 @@
   <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown">
     Notifications
     <span class = "badge badge-warning" >
-      <%= @notifications.where(read: false).count %>
+      <%= @notifications.unread.count %>
     </span>
   </a>
 
