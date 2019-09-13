@@ -3,10 +3,10 @@ class Admins::ApprovalController < ApplicationController
   before_action :authenticate_admin
 
   def employee_approve
-    @pending = Employee.where(approved: nil).where.not(company: nil)
+    @pending = Employee.pending_access
   end
 
   def chef_approve
-    @pending = Chef.where(approved: nil).where.not(food_store: nil)
+    @pending = Chef.pending_access
   end
 end

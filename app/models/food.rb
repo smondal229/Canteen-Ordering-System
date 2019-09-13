@@ -11,6 +11,9 @@ class Food < ApplicationRecord
   
   before_save { self.name = self.name.to_s.titlecase}
 
-  scope :order_desc, -> { order("created_at desc") }
+  scope :search_by_category_and_foodstore, ->(category, foodstore) { where(category: category, food_store: foodstore) }
+  scope :search_by_category, ->(category) { where(category: category) }
+  scope :search_by_foodstore, ->(foodstore) { where(food_store: foodstore) }
+  scope :order_by_added, -> { order(:created_at) }
   
 end

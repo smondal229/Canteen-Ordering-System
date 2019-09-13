@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new(sendable: @user)
-    @messages = Message.where(recipientable: @user).or(Message.where(sendable: @user)).order_desc
+    @messages = Message.find_recipientable(@user).or(Message.find_sendable(@user)).order_desc
   end
 
   def create

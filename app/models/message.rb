@@ -4,7 +4,9 @@ class Message < ApplicationRecord
 
   validates :body, null: false, presence: true
 
-  scope :order_desc, -> { order("created_at desc") }
+  scope :find_recipientable, ->(user) { where(recipientable: user) }
+  scope :find_sendable, ->(user) { where(sendable: user) }
+  scope :order_desc, -> { order(created_at: :desc) }
   
   def get_datetime
     created_at.to_formatted_s(:long)

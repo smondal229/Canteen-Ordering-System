@@ -11,7 +11,7 @@
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-notifications="<%="chef"+current_chef.id.to_s %>" >
-    <%= render(partial:"notifications/notification", collection: @notifications.order("created_at desc")) %>
+    <%= render(partial:"notifications/notification", collection: @notifications.order_desc) %>
   </div>
 </li>
 

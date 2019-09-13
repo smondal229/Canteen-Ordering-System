@@ -52,11 +52,11 @@ class CartsController < ApplicationController
   end
 
   def history
-    @orders = Cart.includes(:employee, :food_store, {cart_items: :food}, :status).find_by_employee(current_employee).order_placed_desc
+    @orders = Cart.includes(:employee, :food_store, { cart_items: :food }, :status).find_by_employee(current_employee).order_placed_desc
   end
 
   def pending
-    @orders = Cart.includes({employee: :company}, :food_store, :status).order_placed_desc
+    @orders = Cart.includes({ employee: :company }, :food_store, :status).order_placed_desc
   end
 
   def recieved

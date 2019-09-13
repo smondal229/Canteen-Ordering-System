@@ -9,6 +9,8 @@ class Notification < ApplicationRecord
     })
   }
 
+  scope :order_desc, -> { order(created_at: :desc) }
+
   def notified
     update(read: true)
   end

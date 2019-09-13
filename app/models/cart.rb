@@ -10,8 +10,8 @@ class Cart < ApplicationRecord
   
   scope :find_by_employee, ->(employee) { where(employee: employee) }
   scope :find_by_foodstore, ->(foodstore) { where(food_store: foodstore) }
-  scope :order_placed_desc, -> { where.not(placed_at: nil).order("placed_at DESC") }
-  scope :order_placed_priority_desc, -> { where.not(priority: nil).order("priority, placed_at DESC") }
+  scope :order_placed_desc, -> { where.not(placed_at: nil).order(placed_at: :desc) }
+  scope :order_placed_priority_desc, -> { where.not(priority: nil).order(:priority, placed_at: :desc) }
 
   def checkout_cart
     update(placed_at: Time.now, total_price: self.total)

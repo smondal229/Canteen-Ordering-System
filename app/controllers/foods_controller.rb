@@ -7,15 +7,15 @@ class FoodsController < ApplicationController
   def index
     if params[:food_store].present? && params[:category].present?
       set_food_store
-      @foods = Food.includes([:category, :food_store]).where(category: params[:category], food_store: params[:food_store])   
+      @foods = Food.includes([:category, :food_store]).search_by_category_and_foodstore(params[:category], params[:food_store])   
     elsif params[:category].present?
       @category = Category.find(params[:category])
-      @foods = Food.includes(:category).where(category: params[:category])
+      @foods = Food.includes(:category).search_by_category(params[:category])
     elsif params[:food_store].present?
       set_food_store
-      @foods = Food.includes(:food_store).where(food_store: params[:food_store])
+      @foods = Food.includes(:food_store).search_by_foodstore(params[:food_store])
     else
-      @foods = Food.order_desc
+      @foods = Food.order_by_added
     end
 
     @foods = @foods.paginate(page: params[:page])

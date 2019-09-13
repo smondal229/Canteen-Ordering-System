@@ -4,5 +4,5 @@ class Status < ApplicationRecord
   
   validates :name, null: false, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :order_desc, -> { order("created_at desc") }
+  scope :order_desc, -> { order(created_at: :desc) }
 end

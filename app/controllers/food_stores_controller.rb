@@ -34,11 +34,11 @@ class FoodStoresController < ApplicationController
   end
 
   def show
-    @food_galleries = FoodGallery.includes(:food_store).where(food_store_id: params[:id]).paginate(page: params[:page])
+    @food_galleries = FoodGallery.includes(:food_store).find_by_foodstore(params[:id]).order_by_desc.paginate(page: params[:page])
   end
   
   def menu
-    @foods = Food.includes(:food_store).where(food_store_id: params[:id])
+    @foods = Food.includes(:food_store).find_by_foodstore(params[:id])
   end
 
   def destroy

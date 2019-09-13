@@ -15,7 +15,8 @@ class Chef < ApplicationRecord
   validates :email, null: false, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
   validate :cannot_approve_without_food_store, on: :update
 
-  scope :only_approved,   -> { where(approved: true) }
+  scope :only_approved,  -> { where(approved: true) }
+  scope :pending_access, -> { where(approved: nil).where.not(food_store: nil) }
 
   def approve_access
     update(approved: true)

@@ -5,6 +5,6 @@ class Company < ApplicationRecord
   validates :name, presence: true, null: false, uniqueness: { case_sensitive: false }
   before_save { self.name = self.name.to_s.titlecase}
 
-  scope :order_desc, -> { order("created_at desc") }
+  scope :order_desc, -> { order(created_at: :desc) }
   
 end

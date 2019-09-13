@@ -7,6 +7,6 @@ class FoodStore < ApplicationRecord
   
   validates :name, presence: true, null: false, uniqueness: { case_sensitive: false }
 
-  scope :order_by_name, -> { order("name") }
+  scope :order_by_name, -> { order(:name) }
   
 end
